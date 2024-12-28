@@ -1,4 +1,5 @@
 import express from 'express';
+import { fileHandler } from './fileHandler'; 
 import {
     createBookGetHandler,
     createBookPostHandler,
@@ -10,9 +11,9 @@ import {
 const router = express.Router();
 
 router.get('/createbook', createBookGetHandler);
-router.post('/createbook', createBookPostHandler);
+router.post('/createbook', fileHandler, createBookPostHandler);
 router.get('/', showBooksHandler);
-router.get('/category/:category', showBooksByCategoryHandler);
+router.get('/categories/:category', showBooksByCategoryHandler);
 router.get('/books/:id', bookDetail);
 
 export default router;

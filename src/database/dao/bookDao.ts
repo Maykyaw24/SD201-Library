@@ -1,5 +1,7 @@
 import { getConnection } from "../dbconnection";
 import { Book } from '../model/book';
+import { RowDataPacket } from "mysql2";
+
 
 export const createBook = async (book: Omit<Book, 'id'>): Promise<Book> => {
     const connection = await getConnection();
@@ -28,8 +30,19 @@ export const getBookById = async (id: number): Promise<Book | null> => {
 };
 
 
+
 export const getBooksByCategory = async (category: string): Promise<Book[]> => {
     const connection = await getConnection();
-    const [books] = await connection.execute('SELECT * FROM books WHERE category = ?', [category]);
+    const [books] = await connection.execute<RowDataPacket[]>('SELECT * FROM books WHERE category = ?', [category]);
+
     return books as Book[];
+};
+
+
+
+export const getAllCategories = async (): Promise<string[]> => {
+    const connection = await getConnection();
+    const [rows] = await connection.execute<RowDataPacket[]>('SELECT DISTINCT category FROM books');
+
+    return rows.map(row => row.category); 
 };

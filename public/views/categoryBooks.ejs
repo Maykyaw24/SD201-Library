@@ -11,7 +11,6 @@
         <h1>All Books</h1>
     </header>
 
-   
     <nav class="navbar">
         <div class="nav-links">
             <a href="/">Home</a>
@@ -26,7 +25,7 @@
     <main>
         <div class="book-grid">
             <% books.forEach(book => { %>
-                    <a href="/books/<%= book.id %>" class="book-card">
+                <a href="/books/<%= book.id %>" class="book-card">
                     <img src="<%= book.image %>" alt="Cover for <%= book.name %>" width="100">
                     <div class="book-details">
                         <h2 class="book-title"><%= book.name %></h2>
@@ -38,6 +37,6 @@
             <% }) %>
         </div>
     </main>
-    
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import router from './routes';
+import { fileHandler } from './fileHandler'; 
 
 const app = express();
 const port = 3000;
