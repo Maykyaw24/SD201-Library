@@ -3,7 +3,7 @@ import mysql from 'mysql2/promise';
 const config = {
     HOST: 'localhost',
     USER: 'root',
-    PASSWORD: 'password',
+    PASSWORD: '31689MTK',
     DB: 'e_library',
 };
 

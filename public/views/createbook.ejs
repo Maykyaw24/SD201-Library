@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a Book</title>
+</head>
+<body>
+    <header>
+        <h1>Upload a Book</h1>
+    </header>
+    <form action="/createbook" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="name">Book Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+        </div>
+        <div>
+            <label for="releasedDate">Release Date:</label>
+            <input type="text" id="releasedDate" name="releasedDate" required>
+        </div>
+        <div>
+            <label for="language">Language:</label>
+            <input type="text" id="language" name="language" required>
+        </div>
+        <div>
+            <label for="image">Cover Photo:</label>
+            <input type="file" id="image" name="image">
+        </div>
+        <div>
+            <label for="bookFile">PDF File:</label>
+            <input type="file" id="bookFile" name="bookFile" accept="application/pdf">
+        </div>
+        <div>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+</body>
+</html>

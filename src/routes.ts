@@ -1,17 +1,18 @@
-import { Router } from 'express';
-import { landingGetHandler } from './handler';
-import { homepageGetHandler } from './handler';
-import { uploadPostHandler } from './handler';
+import express from 'express';
+import {
+    createBookGetHandler,
+    createBookPostHandler,
+    showBooksHandler,
+    showBooksByCategoryHandler,
+    bookDetail,
+} from './handler';
 
+const router = express.Router();
 
-const router = Router();
-
-router.get('/', landingGetHandler);
-
-router.get('/libraryHome' ,homepageGetHandler);
-
-router.post('/upload', uploadPostHandler);
-
-
+router.get('/createbook', createBookGetHandler);
+router.post('/createbook', createBookPostHandler);
+router.get('/', showBooksHandler);
+router.get('/category/:category', showBooksByCategoryHandler);
+router.get('/books/:id', bookDetail);
 
 export default router;
