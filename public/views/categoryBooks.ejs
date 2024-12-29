@@ -3,40 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Books</title>
-    <link rel="stylesheet" href="css/showBooks.css">
+    <title>Category Books</title>
+    <link rel="stylesheet" href="/css/categoryBooks.css"> 
 </head>
 <body>
     <header>
-        <h1>All Books</h1>
+        <h1>E-Library, <%= category %></h1>
     </header>
 
     <nav class="navbar">
         <div class="nav-links">
-            <a href="/">Home</a>
+            <a href="/showBooks">Home</a>
             <% categories.forEach(category => { %>
                 <a href="/categories/<%= category %>"><%= category %></a> 
             <% }) %>
             <a href="/createbook">Upload</a>
         </div>
     </nav>
-    
+
+    <form class="search-form" onsubmit="return false;">
+        <input type="text" id="searchBar" placeholder="Search books..." aria-label="Search books">
+    </form>
 
     <main>
-        <div class="book-grid">
+        <div class="book-grid" id="bookGrid">
             <% books.forEach(book => { %>
-                <a href="/books/<%= book.id %>" class="book-card">
-                    <img src="<%= book.image %>" alt="Cover for <%= book.name %>" width="100">
-                    <div class="book-details">
-                        <h2 class="book-title"><%= book.name %></h2>
-                        <p class="book-author">by <%= book.author %></p>
-                        <p class="book-category">Category: <%= book.category %></p>
-                        <p class="book-date">Released: <%= book.releasedDate %></p>
-                    </div>
-                </a>
+                <div class="book-card" data-name="<%= book.name.toLowerCase() %>" 
+                    data-author="<%= book.author.toLowerCase() %>">
+                    <a href="/books/<%= book.id %>">
+                        <img src="/<%= book.image %>" alt="Cover for <%= book.name %>" width="100"> 
+                        <div class="book-details">
+                            <h2 class="book-title"><%= book.name %></h2>
+                            <p class="book-author">by <%= book.author %></p>
+                            <p class="book-category">Category: <%= book.category %></p>
+                            <p class="book-date">Released: <%= book.releasedDate %></p>
+                        </div>
+                    </a>
+                </div>
             <% }) %>
         </div>
     </main>
+
+    <footer>
+        <p>Footer</p>
+        <p><a href="/something">Something</a></p>
+    </footer>
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const bookGrid = document.getElementById('bookGrid');
+        const books = Array.from(bookGrid.getElementsByClassName('book-card'));
+
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+
+            books.forEach(book => {
+                const name = book.dataset.name;
+                const author = book.dataset.author;
+
+                if (name.includes(query) || author.includes(query)) {
+                    book.style.display = '';
+                } else {
+                    book.style.display = 'none'; 
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

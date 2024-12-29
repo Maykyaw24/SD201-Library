@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/createbook.css">
+
     <title>Upload a Book</title>
 </head>
 <body>
     <header>
         <h1>Upload a Book</h1>
     </header>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/showBooks">Home</a>
+            <% categories.forEach(category => { %>
+                <a href="/categories/<%= category %>"><%= category %></a> 
+            <% }) %>
+            <a href="/createbook">Upload</a>
+        </div>
+        
+    </nav>
+
+
     <form action="/createbook" method="POST" enctype="multipart/form-data">
         <div>
             <label for="name">Book Name:</label>
@@ -42,5 +56,11 @@
             <button type="submit">Upload</button>
         </div>
     </form>
+
+    
+<footer>
+    <p>Footer</p>
+    <p><a href="/something">Something</a></p>
+</footer>
 </body>
 </html>

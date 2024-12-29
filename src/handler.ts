@@ -5,9 +5,15 @@ import { getBookById } from './database/dao/bookDao';
 import { getAllCategories } from './database/dao/bookDao';
 
 
-export const createBookGetHandler = (req: Request, res: Response) => {
+export const landingGetHandler = (req: Request, res: Response) => {
+    res.render('landing');
+};
+
+export const createBookGetHandler = async(req: Request, res: Response) => {
+    const categories = await getAllCategories();
     res.render('createBook', {
         book: null,
+        categories,
     });
 };
 
@@ -31,14 +37,17 @@ export const createBookPostHandler = async (req: Request, res: Response) => {
 
     const result = await createBook(book);
 
+    const categories = await getAllCategories();
+
     res.render('createBook', {
         book: result,
+        categories, 
     });
 };
 
 export const showBooksHandler = async (req: Request, res: Response) => {
     const books = await getAllBooks();
-    const categories = await getAllCategories(); // Fetch all categories
+    const categories = await getAllCategories(); 
 
     res.render('showBooks', {
         books,
@@ -47,13 +56,16 @@ export const showBooksHandler = async (req: Request, res: Response) => {
 };
 
 
-
 export const bookDetail = async (req: Request, res: Response) => {
     const bookId = parseInt(req.params.id, 10); 
     const book = await getBookById(bookId); 
-
-    res.render('bookDetail', { book }); 
+    const categories = await getAllCategories(); 
+    res.render('bookDetail', { 
+        book,
+        categories, 
+    }); 
 };
+
 
 
 export const showBooksByCategoryHandler = async (req: Request, res: Response) => {

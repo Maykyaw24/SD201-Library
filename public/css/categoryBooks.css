@@ -1,4 +1,4 @@
-body, h1, h2, p, a, input, button {
+body, h1, p, a, input {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,13 +6,13 @@ body, h1, h2, p, a, input, button {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #2C3E50;
-    color: #FFFFFF;
+    background-color: #2C3E50; 
+    color: #FFFFFF; 
     line-height: 1.6;
 }
 
 header {
-    background-color: #8ABFA3;
+    background-color: #8ABFA3; 
     color: #2C3E50;
     padding: 1rem;
     text-align: center;
@@ -67,38 +67,39 @@ header {
     border-color: #FFFFFF;
 }
 
+
 .book-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
 }
 
 .book-card {
     background-color: #8ABFA3;
     color: #2C3E50;
-    width: 200px;
-    border-radius: 8px;
+    text-decoration: none;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.book-card a {
-    text-decoration: none;
-    color: inherit;
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .book-card img {
+    display: block;
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: auto;
+    border-bottom: 2px solid #2C3E50;
 }
 
 .book-details {
     padding: 1rem;
+    text-align: center;
 }
 
 .book-title {
@@ -107,16 +108,11 @@ header {
     margin-bottom: 0.5rem;
 }
 
-.book-author,
-.book-category,
+.book-author, 
+.book-category, 
 .book-date {
     font-size: 0.9rem;
-    margin: 0.3rem 0;
-}
-
-.book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 0.3rem;
 }
 footer {
     width: 100%;
@@ -132,7 +128,7 @@ footer {
         width: 90%;
     }
 
-    .book-card {
-        width: 100%;
+    header {
+        font-size: 1.5rem;
     }
 }
